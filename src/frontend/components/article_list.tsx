@@ -1,18 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
+import * as models from '../models';
 import { ArticleCard } from './article_card';
 
-interface Props {}
+interface Props {
+  articles: models.ArticleData[];
+}
 
 interface State {
   value?: string;
   pending: boolean;
-}
-
-interface ArticleData {
-  title: string;
-  name: string;
-  url: string;
 }
 
 export class ArticleList extends React.Component<Props, State> {
@@ -35,10 +32,17 @@ export class ArticleList extends React.Component<Props, State> {
         </div>
       );
     }
-    const articles: ArticleData[] = [];
+    const { articles } = this.props;
+    if (articles.length === 0) {
+      return <div className="container">No results, modify search term</div>;
+    }
+    const styles = {
+      display: 'flex',
+      flexWrap: 'wrap' as any,
+    };
     return (
-      <div className="container">
-        {articles.map((a: ArticleData) => (
+      <div className="container" style={styles}>
+        {articles.map((a: models.ArticleData) => (
           <ArticleCard article={a} />
         ))}
       </div>

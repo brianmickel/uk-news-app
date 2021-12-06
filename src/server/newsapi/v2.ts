@@ -17,6 +17,8 @@ interface NewsApiEverythingParams {
   apiKey: string;
   from?: string;
   sortBy?: string;
+  pageSize?: number;
+  language?: 'en';
   q?: string;
 }
 
@@ -25,6 +27,8 @@ export async function getEverything(searchText?: string): Promise<{}> {
   const params: NewsApiEverythingParams = {
     from: today(),
     sortBy: 'publishedAt',
+    pageSize: 5,
+    language: 'en',
     apiKey: process.env.NEWSAPI_API_KEY || '',
   };
 
