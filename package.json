@@ -1,0 +1,28 @@
+{
+  "name": "uk-news-app",
+  "version": "1.0.0",
+  "description": "Show news from the United Kingdom",
+  "main": "src/server/app.ts",
+  "scripts": {
+    "frontend-build": "rm -rf dist/* && webpack",
+    "frontend-dev": "rm -rf dist/* && webpack && webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npx ts-node src/server/app.ts"
+  },
+  "author": "Brian Mickel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.11",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
