@@ -8,6 +8,8 @@ See the latest UK news, filter by keywords, view news articles.
 $ npm install
 ```
 
+Create a `.env` file with a token
+
 # Run
 
 ```
@@ -16,3 +18,7 @@ $ npm install
 ```
 
 Navigate to http://localhost:3000
+
+# Use
+
+Type a term like "tesla" or "bitcoin" in the search box to see the most recent english articles published on the topic.

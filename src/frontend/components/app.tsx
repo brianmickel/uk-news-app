@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getNews } from '../api';
+import { getNews, getTopHeadlines } from '../api';
 import * as models from '../models';
 import { SearchBox } from './search_box';
 import { ArticleList } from './article_list';
@@ -16,10 +16,16 @@ export class App extends React.Component<{}, State> {
       searchText: '',
       articles: [],
     };
+    this.updateArticles();
   }
 
   async updateArticles() {
-    const articles = await getNews(this.state.searchText);
+    let articles = [];
+    if (this.state.searchText) {
+      articles = await getNews(this.state.searchText);
+    } else {
+      articles = await getTopHeadlines();
+    }
     this.setState({ articles });
   }
 
@@ -41,6 +47,7 @@ export class App extends React.Component<{}, State> {
             />
           </div>
           <div className="level">
+            {searchText ? '' : <h3 className="title">Top UK Articles</h3>}
             <ArticleList articles={articles} />
           </div>
         </div>
