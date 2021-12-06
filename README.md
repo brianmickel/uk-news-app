@@ -1,5 +1,7 @@
 # UK News App
 
+See the latest UK news, filter by keywords, view news articles.
+
 # Install
 
 ```

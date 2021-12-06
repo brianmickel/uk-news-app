@@ -1,10 +1,10 @@
 import express from 'express';
 import * as path from 'path';
-
 import dotenv from 'dotenv';
-dotenv.config();
 
-import { getEverything } from './newsapi/index';
+import { News } from './api/v1/news';
+
+dotenv.config();
 
 const app = express();
 
@@ -17,10 +17,12 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/everything', async (req, res) => {
-  const data = await getEverything();
-  res.setHeader('content-type', 'text/plain');
-  res.send(JSON.stringify(data, null, 2));
+app.get('/api/v1/news', async (req, res) => {
+  const searchText = String(req.query.searchText); // TODO: fix query string handling
+  const data = await News.get({ searchText });
+  res.setHeader('content-type', 'application/json');
+  res.set('Cache-control', 'public, max-age=10');
+  res.send(data);
 });
 
 const port = process.env.PORT || 3000;
